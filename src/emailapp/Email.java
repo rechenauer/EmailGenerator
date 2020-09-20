@@ -7,9 +7,11 @@ public class Email {
     private String firstName;
     private String lastName;
     private String password;
+    private String email;
     private int defaultPasswordLength = 8;
     private String department;
-    private int mailboxCapacity;
+    private String companySuffix = "examplecompany.com";
+    private int mailboxCapacity = 500;
     private String alternateEmail;
 
     //Constructor to receive die firstname and the lastname
@@ -23,8 +25,13 @@ public class Email {
 
         //Call a method that returns a random password
         this.password = generateRandomPassword(defaultPasswordLength);
-        System.out.println("Your password is: "+ this.password);
+        System.out.println("Your password is: " + this.password);
+
+        //Combine the given elements to generate an email
+        email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department.toLowerCase() + "." + companySuffix;
+        System.out.println("Your email address is: " + email);
     }
+
 
     //Ask for the department
     private String setDepartment() {
@@ -50,21 +57,30 @@ public class Email {
 
     //Generate random password according to the requested length
     private String generateRandomPassword(int length) {
+        //characters the password can contain
         String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890?+-#!?§$%&/()=:;-€@";
         //Creates a char array with length "length"
         char[] pwd = new char[ length ];
         //Picks a random character from passwordSet and puts it inside the char array which represents the password
         for (int i = 0; i < length; i++) {
             int random = (int) (Math.random() * passwordSet.length());
-            pwd[i] = passwordSet.charAt(random);
+            pwd[ i ] = passwordSet.charAt(random);
         }
         return new String(pwd);
     }
 
     //Set the mailbox capacity
+    public void setMailboxCapacity(int capacity) {
+        this.mailboxCapacity = capacity;
+    }
 
     //Set alternate email
+    public void setAlternateEmail(String alternateEmail) {
+        this.alternateEmail = alternateEmail;
+    }
 
-    //Set password
-
+    //Change the password
+    public void changePassword(String pwd) {
+        this.password = pwd;
+    }
 }
