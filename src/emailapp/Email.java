@@ -18,12 +18,13 @@ public class Email {
 
         //Call a method asking for the apartment and return it
         this.department = setDepartment();
+        System.out.println("Department: " + department);
     }
 
     //Ask for the department
     private String setDepartment() {
         String decision;
-        System.out.println("Enter the department \n1 for Sales \n2 for Development \n3 for Accounting \n0 for none");
+        System.out.println("DEPARTMENT CODES: \n1 for Sales \n2 for Development \n3 for Accounting \n0 for none \nEnter the department code:");
         Scanner in = new Scanner(System.in);
         int depChoice = in.nextInt();
         switch (depChoice) {
